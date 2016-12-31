@@ -201,9 +201,6 @@ var Kit = {
       
     },
   },
-  pixelArt: function() {
-    console.log(processingInstance.createGraphics);
-  },
   init: function(Processing) {
     Kit.processingInstance = new Processing(Kit.canvas);
   }
