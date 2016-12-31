@@ -13,9 +13,6 @@
  * 12/31/16: Updated vectRefl; now uses variables instead of calling the same functions multiple times. (@maxzman14)
  * 12/31/16: Bugfixes, added colliding.rectRect, colliding.circleCircle, and colliding.circleLine (@maxzman14)
 */
-
-var canvas = document.getElementByTagName("canvas")[0];
-
 var Kit = {
   onKA: (document.location.origin === "https://www.kasandbox.org"),
   choose: function(choices) {
