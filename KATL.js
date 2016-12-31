@@ -38,7 +38,7 @@ var Kit = {
      * @Returns (Number): The y intercept of the line that passes through v1 and v2
      * @Revisions: None
     */
-    return v1[1] - M(v1, v2) * v1[0];
+    return v1[1] - Kit.M(v1, v2) * v1[0];
   },
   PM: function(v1, v2) {
     /* @Author: TemporalFuzz (@maxzman14)
@@ -46,7 +46,7 @@ var Kit = {
      * @Returns (Number): The slope of any line perpendicular to the line that passes through v1 and v2
      * @Revisions: None
     */
-    return -1/M(v1, v2);
+    return -1/Kit.M(v1, v2);
   },
   TB: function(v, m) {
     /* @Author: TemporalFuzz (@maxzman14)
