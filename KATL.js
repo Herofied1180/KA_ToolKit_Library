@@ -197,26 +197,4 @@ var Kit = {
       return m > Math.min(a[0], b[0]) && m < Math.max(a[0], b[0]) && vectDist([m, Kit.M(a, b) * m + Kit.B(a, b)], [c[0], c[1]]) < r;
     }
   },
-  /*pixelArt: function(data, colors, w, h) {
-    /* @Author: TemporalFuzz (@maxzman14)
-     * @Param data (2D Array): Data to be processed
-     * @Param colors (Array): Tells the processor what keys correspond to which color
-     * @Param *w (Number): The width of the image. Defaults to 120
-     * @Param *h (Number): The heigiht of the image. Defaults to 120
-     * @Description: Draws pixel art from data to an image automatically. The colors array shows which numbers go with which colors, and the data 2D array tells which color to use. Use any out-of-range value to not draw anything in that box.
-     * @Returns (Image): An image with the pixel art drawn on it.
-     * @Revisions: None
-    *//*
-    background(0, 0, 0, 0);
-    
-    for(var y = 0;y < data.length;y++) {
-      for(var x = 0;x < data[y].length;x++) {
-        if(colors[data[y][x]]) {
-          fill(colors[data[y][x]]);
-          rect(x * (w || 120)/data[0].length, y * (h || 120)/data.length, (w || 120)/data[0].length, (h || 120)/data.length);
-        }
-      }
-    }
-    return get(0, 0, w || 120, h || 120);
-  },*/
 };
