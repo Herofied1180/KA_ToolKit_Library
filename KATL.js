@@ -197,6 +197,8 @@ var Kit = {
       
       var m = (Kit.B(a, b) - Kit.TB(Kit.PM(a, b), c))/(Kit.PM(a, b) - Kit.M(a, b));
       return m > Math.min(a[0], b[0]) && m < Math.max(a[0], b[0]) && Kit.vectDist([m, Kit.M(a, b) * m + Kit.B(a, b)], [c[0], c[1]]) < r;
-    }
+    },
+    lineLine: function(a, b, c, d) {
+    },
   },
 };
