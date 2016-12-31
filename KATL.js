@@ -202,6 +202,10 @@ var Kit = {
     },
   },
   init: function(Processing, canvas) {
+    /* @Author: TemporalFuzz (@maxzman14)
+     * @Param Processing (Object): The Processing object (from the Processing.js library), passed as an argument so as not to cause errors.
+     * @Param canvas (Canvas Element): The canvas for the Toolkit to act on.
+    */
     Kit.canvas = canvas;
     Kit.processingInstance = new Processing(Kit.canvas);
   }
