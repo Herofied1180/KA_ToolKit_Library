@@ -185,10 +185,10 @@ var Kit = {
        * @Returns (Boolean): Whether the specified segment is colliding with the speficied circle
        * @Revisions: None
       */
-      if(c[0] < min(a[0], b[0]) - r) { return false; }
-      if(c[0] > max(a[0], b[0]) + r) { return false; }
-      if(c[1] < min(a[1], b[1]) - r) { return false; }
-      if(c[1] > max(a[1], b[1]) + r) { return false; }
+      if(c[0] < Math.min(a[0], b[0]) - r) { return false; }
+      if(c[0] > Math.max(a[0], b[0]) + r) { return false; }
+      if(c[1] < Math.min(a[1], b[1]) - r) { return false; }
+      if(c[1] > Math.max(a[1], b[1]) + r) { return false; }
       if(a[0] === b[0] || a[1] === b[1]) { return false; }
       
       if(Kit.vectDist(a, c) < r || Kit.vectDist(b, c) < r) { return true; }
