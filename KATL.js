@@ -151,6 +151,6 @@ var Kit = {
     var BAB = TK.B(a, b);
     var PMAB = TK.PM(a, b);
     var TBABV = TK.TB(PMAB, v);
-    return TK.vectSub(v, TK.vectMult(TK.vectSub(v, [(BAB - TBABV)/(PMAB - MAB), MAB * (BAB - TBABV)/(PMAB - MAB)) + BAB]), 2);         
+    return TK.vectSub(v, TK.vectMult(TK.vectSub(v, [(BAB - TBABV)/(PMAB - MAB), MAB * (BAB - TBABV)/(PMAB - MAB) + BAB]), 2_);         
   }
 };
