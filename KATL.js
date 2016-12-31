@@ -215,9 +215,10 @@ var Kit = {
       for(var x = 0;x < data[y].length;x++) {
         if(colors[data[y][x]]) {
           img.fill(colors[data[y][x]]);
-          
+          img.rect(x * img.width/data[0].length, y * img.height/data.length, img.width/data[0].length, img.height/data.length);
         }
       }
     }
+    return img;
   },
 };
