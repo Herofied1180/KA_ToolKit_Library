@@ -70,7 +70,7 @@ var Kit = {
      * @Returns: The vector subtraction of v minus s
      * @Revisions: None
     */
-v    return [v[0] - s[0], v[1] - s[1]];
+    return [v[0] - s[0], v[1] - s[1]];
   },
   vectMult: function(v, m) {
     /* @Author: TemporalFuzz (@maxzman14)
