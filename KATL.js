@@ -12,7 +12,7 @@
  * 12/31/16: Updated vectRefl; now uses variables instead of calling the same functions multiple times. (@maxzman14)
 */
 
-var TK = {
+var Kit = {
   onKA: (document.location.origin === "https://www.kasandbox.org"),
   choose: function(choices) {
     /* @Author: TemporalFuzz (@maxzman14)
