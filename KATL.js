@@ -14,7 +14,7 @@
  * 12/31/16: Bugfixes, added colliding.rectRect, colliding.circleCircle, and colliding.circleLine (@maxzman14)
 */
 var Kit = {
-  canvas: document.getElementsByTagName("canvas")[0],
+  canvas: null,
   processingInstance: null,
   onKA: (document.location.origin === "https://www.kasandbox.org"),
   choose: function(choices) {
@@ -202,6 +202,7 @@ var Kit = {
     },
   },
   init: function(Processing) {
+    Kit.canvas = document.getElementsByTagName("canvas")[0];
     Kit.processingInstance = new Processing(Kit.canvas);
   }
 };
