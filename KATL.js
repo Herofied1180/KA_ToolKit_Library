@@ -201,12 +201,42 @@ var Kit = {
       
     },
   },
+  pixelArt: function(data, colors, w, h) {
+    /* @Author: TemporalFuzz (@maxzman14)
+     * @Param data (2D Array): The data that the pixel art uses
+     * @Colors (Object): Matches each key with a color
+     * @Params w, h (Numbers): Width and height of the image respectively. Both default to 120.
+     * @Returns (Image): A new image with the pixel art drawn on it
+    */
+    var img = Kit.processingInstance.createGraphics(P2D, w || 120, h || 120);
+    img.background(0, 0, 0, 0);
+    
+    var longestRow = 0;
+    for(var y = 0;y < data.length;y++) {
+      if(data[y].length > longestRow) {
+        longestRow = data[y];
+      }
+    }
+    
+    for(var y = 0;y < data.length;y++) {
+      for(var x = 0;x < data[y].length;x++) {
+        if(colors[data[y][x]]) {
+          img.fill(colors[data[y][x]]);
+          img.rect(x * img.width/longestRow, y * img.height/data.length, img.width/longestRow, img.height/data.length);
+        }
+      }
+    }
+    
+    return img;
+  },
   init: function(Processing, canvas) {
     /* @Author: TemporalFuzz (@maxzman14)
      * @Param Processing (Object): The Processing object (from the Processing.js library), passed as an argument so as not to cause errors.
      * @Param canvas (Canvas Element): The canvas for the Toolkit to act on.
+     * @Description: Initializes and configures the library
+     * @Revisions: None
     */
     Kit.canvas = canvas;
     Kit.processingInstance = new Processing(Kit.canvas);
-  }
+  },
 };
