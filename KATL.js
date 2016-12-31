@@ -98,7 +98,7 @@ var Kit = {
      * @Returns (Vector Array): The magnitude of v
      * @Revisions: None
     */
-    return sqrt(v[0] * v[0] + v[1] * v[1]);
+    return Math.sqrt(v[0] * v[0] + v[1] * v[1]);
   },
   vectNorm: function(v) {
     /* @Author: TemporalFuzz (@maxzman14)
