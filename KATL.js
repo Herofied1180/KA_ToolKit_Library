@@ -16,6 +16,7 @@
 
 var Kit = {
   canvas: document.getElementsByTagName("canvas")[0],
+  processingInstance: new Processing(Kit.canvas),
   onKA: (document.location.origin === "https://www.kasandbox.org"),
   choose: function(choices) {
     /* @Author: TemporalFuzz (@maxzman14)
@@ -202,6 +203,6 @@ var Kit = {
     },
   },
   pixelArt: function() {
-    return new Image(100, 100);
+    console.log(processingInstance.createGraphics);
   }
 };
