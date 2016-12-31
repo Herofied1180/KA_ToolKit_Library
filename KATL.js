@@ -201,4 +201,7 @@ var Kit = {
       
     },
   },
+  pixelArt: function() {
+    return new Image(100, 100);
+  }
 };
