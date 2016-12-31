@@ -197,7 +197,7 @@ var Kit = {
       return m > Math.min(a[0], b[0]) && m < Math.max(a[0], b[0]) && dist(m, Kit.M(a, b) * m + Kit.B(a, b), c[0], c[1]) < r;
     }
   },
-  pixelArt: function(data, colors, w) {
+  pixelArt: function(data, colors, w, h) {
     /* @Author: TemporalFuzz (@maxzman14)
      * @Param data (2D Array): Data to be processed
      * @Param colors (Array): Tells the processor what keys correspond to which color
