@@ -201,8 +201,8 @@ var Kit = {
       
     },
   },
-  init: function(Processing) {
-    Kit.canvas = document.getElementsByTagName("canvas")[0];
+  init: function(Processing, canvas) {
+    Kit.canvas = canvas;
     Kit.processingInstance = new Processing(Kit.canvas);
   }
 };
