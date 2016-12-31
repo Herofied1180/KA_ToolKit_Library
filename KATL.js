@@ -4,7 +4,8 @@
 
 /* Notes:
  * If you make a branch with revisions on functions, please include those revisions in the @Revision part of the function documentation.
- * Please don't fundamentally change a function when revising it. Your update won't be added. Instead, you could either make another function or conditionally change the output (probably depending on the number of arguments)
+ * Please don't fundamentally change a function when revising it. Your update won't be added. Instead, you could either make another function or conditionally change the output (probably depending on the number of arguments
+ * If you add any functions, try to keep the documentation format consistent
 */
 
 /*Changelog:
@@ -174,6 +175,25 @@ var Kit = {
        * @Revisions: None
       */
       return abs(x1 - x2) * 2 < w1 + w2 && abs(y1 - y2) * 2 < h1 + h2;
+    },
+    circleLine: function(a, b, c, r) {
+      /* @Author: TemporalFuzz (@maxzman14)
+       * @Params a, b (Vector Arrays): The endpoints of the segment
+       * @Param c (Vector Array): The center of the circle
+       * @Param r (Number): The radius of the circle
+       * @Returns (Boolean): Whether the specified segment is colliding with the speficied circle
+       * @Revisions: None
+      */
+      if(c[0] < min(a[0], b[0]) - r) { return false; }
+      if(c[0] > max(a[0], b[0]) + r) { return false; }
+      if(c[1] < min(a[1], b[1]) - r) { return false; }
+      if(c[1] > max(a[1], b[1]) + r) { return false; }
+      if(a[0] === b[0] || a[1] === b[1]) { return false; }
+      
+      if(Kit.vectDist(a, c) < r || Kit.vectDist(b, c) < r) { return true; }
+      
+      var m = (Kit.B(a, b) - Kit.TB(Kit.PM(a, b), c))/(Kit.PM(a, b) - Kit.M(a, b));
+      return m > min(a[0], b[0]) && m < max(a[0], b[0]) && dist(m, Kit.M(a, b) * m + Kit.B(a, b), c[0], c[1]) < r;
     }
   }
 };
