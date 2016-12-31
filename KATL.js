@@ -208,7 +208,7 @@ var Kit = {
      * @Params w, h (Numbers): Width and height of the image respectively. Both default to 120.
      * @Returns (Image): A new image with the pixel art drawn on it
     */
-    var img = Kit.processingInstance.createGraphics(1, w || 120, h || 120);
+    var img = Kit.processingInstance.createGraphics(w || 120, h || 120, 1);
     img.background(0, 0, 0, 0);
     
     var longestRow = 0;
