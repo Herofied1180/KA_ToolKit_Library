@@ -194,7 +194,30 @@ var Kit = {
       if(Kit.vectDist(a, c) < r || Kit.vectDist(b, c) < r) { return true; }
       
       var m = (Kit.B(a, b) - Kit.TB(Kit.PM(a, b), c))/(Kit.PM(a, b) - Kit.M(a, b));
-      return m > min(a[0], b[0]) && m < max(a[0], b[0]) && dist(m, Kit.M(a, b) * m + Kit.B(a, b), c[0], c[1]) < r;
+      return m > Math.min(a[0], b[0]) && m < Math.max(a[0], b[0]) && dist(m, Kit.M(a, b) * m + Kit.B(a, b), c[0], c[1]) < r;
     }
-  }
+  },
+  pixelArt: function(data, colors, w) {
+    /* @Author: TemporalFuzz (@maxzman14)
+     * @Param data (2D Array): Data to be processed
+     * @Param colors (Array): Tells the processor what keys correspond to which color
+     * @Param *w (Number): The width of the image. Defaults to 120
+     * @Param *h (Number): The heigiht of the image. Defaults to 120
+     * @Description: Draws pixel art from data to an image automatically. The colors array shows which numbers go with which colors, and the data 2D array tells which color to use. Use any out-of-range value to not draw anything in that box.
+     * @Returns (Image): An image with the pixel art drawn on it.
+     * @Revisions: None
+    */
+    var img = createGraphics(P2D, w || 120, h || 120);
+    img.background(0, 0, 0, 0);
+    img.noStroke();
+    
+    for(var y = 0;y < data.length;y++) {
+      for(var x = 0;x < data[y].length;x++) {
+        if(colors[data[y][x]]) {
+          img.fill(colors[data[y][x]]);
+          
+        }
+      }
+    }
+  },
 };
