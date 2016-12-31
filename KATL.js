@@ -207,18 +207,16 @@ var Kit = {
      * @Returns (Image): An image with the pixel art drawn on it.
      * @Revisions: None
     */
-    var img = createGraphics(P2D, w || 120, h || 120);
-    img.background(0, 0, 0, 0);
-    img.noStroke();
+    background(0, 0, 0, 0);
     
     for(var y = 0;y < data.length;y++) {
       for(var x = 0;x < data[y].length;x++) {
         if(colors[data[y][x]]) {
-          img.fill(colors[data[y][x]]);
-          img.rect(x * img.width/data[0].length, y * img.height/data.length, img.width/data[0].length, img.height/data.length);
+          fill(colors[data[y][x]]);
+          rect(x * (w || 120)/data[0].length, y * (h || 120)/data.length, (w || 120)/data[0].length, (h || 120)/data.length);
         }
       }
     }
-    return img;
+    return get(0, 0, w || 120, h || 120);
   },
 };
