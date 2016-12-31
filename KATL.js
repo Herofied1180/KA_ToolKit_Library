@@ -197,7 +197,7 @@ var Kit = {
       return m > Math.min(a[0], b[0]) && m < Math.max(a[0], b[0]) && vectMag([m, Kit.M(a, b) * m + Kit.B(a, b), c[0], c[1]]) < r;
     }
   },
-  pixelArt: function(data, colors, w, h) {
+  /*pixelArt: function(data, colors, w, h) {
     /* @Author: TemporalFuzz (@maxzman14)
      * @Param data (2D Array): Data to be processed
      * @Param colors (Array): Tells the processor what keys correspond to which color
@@ -206,7 +206,7 @@ var Kit = {
      * @Description: Draws pixel art from data to an image automatically. The colors array shows which numbers go with which colors, and the data 2D array tells which color to use. Use any out-of-range value to not draw anything in that box.
      * @Returns (Image): An image with the pixel art drawn on it.
      * @Revisions: None
-    */
+    *//*
     background(0, 0, 0, 0);
     
     for(var y = 0;y < data.length;y++) {
@@ -218,5 +218,5 @@ var Kit = {
       }
     }
     return get(0, 0, w || 120, h || 120);
-  },
+  },*/
 };
