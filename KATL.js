@@ -238,5 +238,6 @@ var Kit = {
     */
     Kit.canvas = canvas;
     Kit.processingInstance = new Processing(Kit.canvas);
+    Kit.rect = Kit.processingInstance.rect;
   },
 };
