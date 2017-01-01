@@ -17,16 +17,58 @@
  * 1/1/17: Fixed colliding.circleCollideLine, TB, and vectRefl
 */
 var Kit = {
-  canvas: null,
-  pI: null,
+  canvas: null,//The canvas to apply commands to
+  pI: null,//The processing instance to apply the commands with
+  programID: null,
+  chars: "abcdefghijlkmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+[]{}|\\'\":;<,>./?".split(""),
   onKA: (document.location.origin === "https://www.kasandbox.org"),
+  init: function(Processing, canvas) {
+    /* @Author: TemporalFuzz (@maxzman14)
+     * @Param Processing (Object): The Processing object (from the Processing.js library), passed as an argument so as not to cause errors.
+     * @Param canvas (Canvas Element): The canvas for the Toolkit to act on.
+     * @Description: Initializes and configures the library
+     * @Revisions: None
+    */
+    Kit.canvas = canvas;
+    Kit.pI = new Processing(Kit.canvas);
+    Kit.programID = parseFloat(document.location.href.split(".")[1]);
+  },
+  assignKeys: function(reset) {
+    if(!Window.localStorage[Kit.programID].keysAssigned || reset) {
+      var alphabet = Object.create(Kit.chars);
+      while(alphabet.length > 0) {
+        var r = Math.floor(Math.random(alphabet.length));
+        Window.localStorage[Kit.programID][Kit.chars[alphabet.length - 1]] = alphabet[r];
+        alphabet.splice(r, 1);
+      }
+      Window.localStorage[Kit.programID].keysAssigned = true;
+    }
+  },
+  encrypt: function(str) {
+    var newStr = "";
+    for(var i = 0;i < str.length;i++) {
+      newStr += Window.localStorage[Kit.programID][str[i]];
+    }
+    return newStr;
+  },
+  decrypt: function(str) {
+    var newStr = "";
+    for(var i = 0;i < str.length;i++) {
+      for(var j in Window.localStorage[Kit.programID]) {
+        if(Window.localStorage[Kit.programID][j] === str[i]) {
+          newStr += j;
+        }
+      }
+    }
+    return newStr;
+  },
   choose: function(choices) {
     /* @Author: TemporalFuzz (@maxzman14)
      * @Param choices (Array): The array of choices
      * @Returns: A random item from the choices array
      * @Revisions: None
     */
-    return choices[floor(random(choices.length))];
+    return choices[Math.floor(Math.random(choices.length))];
   },
   M: function(v1, v2) {
     /* @Author: TemporalFuzz (@maxzman14)
@@ -237,19 +279,6 @@ var Kit = {
       img.line(x + sx, y, x + sx, y + h);
     }
   },
-  diagonalGradientToRight: function(img, x, y, w, h, c1, c2, quality) {
-  
-  },
-  init: function(Processing, canvas) {
-    /* @Author: TemporalFuzz (@maxzman14)
-     * @Param Processing (Object): The Processing object (from the Processing.js library), passed as an argument so as not to cause errors.
-     * @Param canvas (Canvas Element): The canvas for the Toolkit to act on.
-     * @Description: Initializes and configures the library
-     * @Revisions: None
-    */
-    Kit.canvas = canvas;
-    Kit.pI = new Processing(Kit.canvas);
-  },
   colliding: {
     /* This contains all collision check functions between shapes */
     circleCircle: function(p1, r1, p2, r2) {
@@ -302,4 +331,18 @@ var Kit = {
       return (p[0] >= Math.min(a[0], b[0]) && p[0] <= Math.max(a[0], b[0]) && p[0] >= Math.min(c[0], d[0]) && p[0] <= Math.max(c[0], d[0]));
     }
   },
+  storage: {
+    set: function (item, value) {
+      Window.localStorage.setItem(item, value);
+    },
+    get: function (item) {
+      return Window.localStorage.getItem(item);
+    },
+    delete: function(item) {
+      Window.localStorage.removeItem(item);
+    },
+    clear: function() {
+      Window.localStorage.clear();
+    }
+  }
 };
