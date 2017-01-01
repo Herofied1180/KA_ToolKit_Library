@@ -1,5 +1,5 @@
 /* Typedefs:
- * Vector Array [x, y]: Simply stores a vector, which can be processed by the numerous vector functions in this library.
+ * Vector Array: Simply stores a vector as an array, in the format [x, y], which can then be processed by the numerous vector functions in this library.
 */
 
 /* Notes:
