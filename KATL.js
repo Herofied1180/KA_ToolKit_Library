@@ -209,7 +209,7 @@ var Kit = {
      * @Returns (Image): A new image with the pixel art drawn on it
     */
     var img = Kit.processingInstance.createGraphics(w || 120, h || 120, 1);
-    img.background(0, 0, 0, 0);
+    img.background(200);
     
     var longestRow = 0;
     for(var y = 0;y < data.length;y++) {
@@ -238,6 +238,5 @@ var Kit = {
     */
     Kit.canvas = canvas;
     Kit.processingInstance = new Processing(Kit.canvas);
-    Kit.rect = Kit.processingInstance.rect;
   },
 };
