@@ -210,6 +210,7 @@ var Kit = {
     */
     var img = Kit.pI.createGraphics(w || 120, h || 120, 1);
     img.background(0, 0, 0, 0);
+    img.noStroke();
     
     var longestRow = 0;
     for(var y = 0;y < data.length;y++) {
