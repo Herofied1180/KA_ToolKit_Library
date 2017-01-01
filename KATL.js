@@ -214,7 +214,7 @@ var Kit = {
     var longestRow = 0;
     for(var y = 0;y < data.length;y++) {
       if(data[y].length > longestRow) {
-        longestRow = data[y];
+        longestRow = data[y].length;
       }
     }
     
