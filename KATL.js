@@ -158,6 +158,96 @@ var Kit = {
     var TBABV = Kit.TB(PMAB, v);
     return Kit.vectSub(v, Kit.vectMult(Kit.vectSub(v, [(BAB - TBABV)/(PMAB - MAB), MAB * (BAB - TBABV)/(PMAB - MAB) + BAB]), 2));         
   },
+  intersection: function(a, b, c, d) {
+    /* @Author: TemporalFuzz (@maxzman14)
+     * @Params a, b (Vector Arrays): Two points on the first line to find the intersection point of
+     * @Params c, d (Vector Arrays): Two points on the second line to find the intersection point of
+     * @Returns (Vector Array): The intersection point of the two lines
+     * @Revisions: None
+    */
+    var X = (Kit.B(c, d) - Kit.B(a, b))/(Kit.M(a, b) - Kit.M(c, d));
+    return [X, Kit.M(a, b) * X + Kit.B(a, b)];
+  },
+  pixelArt: function(data, colors, w, h) {
+    /* @Author: TemporalFuzz (@maxzman14)
+     * @Param data (2D Array): The data that the pixel art uses
+     * @Colors (Object): Matches each key with a color
+     * @Params w, h (Numbers): Width and height of the image respectively. Both default to 120.
+     * @Returns (Image): A new image with the pixel art drawn on it
+     * @Revisions: 
+       * Removed stroke from pixels (12/31/16, @maxzman14)
+    */
+    var img = Kit.pI.createGraphics(w || 120, h || 120, 1);
+    img.background(0, 0, 0, 0);
+    img.noStroke();
+    
+    var longestRow = 0;
+    for(var y = 0;y < data.length;y++) {
+      if(data[y].length > longestRow) {
+        longestRow = data[y].length;
+      }
+    }
+    
+    for(var y = 0;y < data.length;y++) {
+      for(var x = 0;x < data[y].length;x++) {
+        if(colors[data[y][x]] !== undefined) {
+          img.fill(colors[data[y][x]]);
+          img.rect(x * img.width/longestRow, y * img.height/data.length, img.width/longestRow, img.height/data.length);
+        }
+      }
+    }
+    
+    return img.get();
+  },
+  verticalGradient: function(img, x, y, w, h, c1, c2, quality) {
+    /* @Author: TemporalFuzz (@maxzman14)
+     * @Param img (Image): The image to draw the gradient onto
+     * @Param x (Number): x position of the gradient
+     * @Param y (Number): y position of the gradient
+     * @Param w (Number): width of the gradient
+     * @Param h (Number): height of the gradient
+     * @Params c1, c2 (Colors): The top and bottom colors, respectively
+     * @Param quality (Number): Lower = more quality. 2 is typically good
+     * @Revisions:
+       * Fixed strokeWeight (12/31/16, @maxzman14)
+    */
+    img.strokeWeight(quality);
+    for(var sy = 0;sy <= h;sy += quality) {
+      img.stroke(Kit.pI.lerpColor(c1, c2, sy/w));
+      img.line(x, y + sy, x + w, y + sy);
+    }
+  },
+  horizontalGradient: function(img, x, y, w, h, c1, c2, quality) {
+    /* @Author: TemporalFuzz (@maxzman14)
+     * @Param img (Image): The image to draw the gradient onto
+     * @Param x (Number): x position of the gradient
+     * @Param y (Number): y position of the gradient
+     * @Param w (Number): width of the gradient
+     * @Param h (Number): height of the gradient
+     * @Params c1, c2 (Colors): The top and bottom colors, respectively
+     * @Param quality (Number): Lower = more quality. 2 is typically good
+     * @Revisions:
+       * Fixed strokeweight
+    */
+    img.strokeWeight(quality);
+    for(var sx = 0;sx <= w;sx += quality) {
+      img.stroke(Kit.pI.lerpColor(c1, c2, sx/w));
+      img.line(x + sx, y, x + sx, y + h);
+    }
+  },
+  diagonalGradientToRight: function(img, x, y, w, h, c1, c2, quality) {
+  
+  },
+  init: function(Processing, canvas) {
+    /* @Author: TemporalFuzz (@maxzman14)
+     * @Param Processing (Object): The Processing object (from the Processing.js library), passed as an argument so as not to cause errors.
+     * @Param canvas (Canvas Element): The canvas for the Toolkit to act on.
+     * @Description: Initializes and configures the library
+     * @Revisions: None
+    */
+    Kit.canvas = canvas;
+    Kit.pI = new Processing(Kit.canvas);
+  },
   colliding: {
     /* This contains all collision check functions between shapes */
     circleCircle: function(p1, r1, p2, r2) {
@@ -200,79 +290,14 @@ var Kit = {
       return m > Math.min(a[0], b[0]) && m < Math.max(a[0], b[0]) && Kit.vectDist([m, Kit.M(a, b) * m + Kit.B(a, b)], c) < r;
     },
     lineLine: function(a, b, c, d) {
-      
-    },
-  },
-  pixelArt: function(data, colors, w, h) {
-    /* @Author: TemporalFuzz (@maxzman14)
-     * @Param data (2D Array): The data that the pixel art uses
-     * @Colors (Object): Matches each key with a color
-     * @Params w, h (Numbers): Width and height of the image respectively. Both default to 120.
-     * @Returns (Image): A new image with the pixel art drawn on it
-     * @Revisions: 
-       * Removed stroke from pixels (12/31/16, @maxzman14)
-    */
-    var img = Kit.pI.createGraphics(w || 120, h || 120, 1);
-    img.background(0, 0, 0, 0);
-    img.noStroke();
-    
-    var longestRow = 0;
-    for(var y = 0;y < data.length;y++) {
-      if(data[y].length > longestRow) {
-        longestRow = data[y].length;
-      }
+      /* @Author: TemporalFuzz (@maxzman14)
+       * @Params a, b (Vector Arrays): The two endpoints of the first line to check the intersection of
+       * @Params c, d (Vector Arrays): The two endpoints of the second line to check the intersection of
+       * @Returns (Vector Array): The intersection point of the two lines
+       * @Revisions: None
+      */
+      var p = Kit.intersection(a, b, c, d);//Calculate intersection
+      return (p[0] >= Math.min(a[0], b[0]) && p[0] <= Math.max(a[0], b[0]) && p[0] >= Math.min(c[0], d[0]) && p[0] <= Math.max(c[0], d[0]));
     }
-    
-    for(var y = 0;y < data.length;y++) {
-      for(var x = 0;x < data[y].length;x++) {
-        if(colors[data[y][x]] !== undefined) {
-          img.fill(colors[data[y][x]]);
-          img.rect(x * img.width/longestRow, y * img.height/data.length, img.width/longestRow, img.height/data.length);
-        }
-      }
-    }
-    
-    return img.get();
-  },
-  verticalGradient: function(img, x, y, w, h, c1, c2, quality) {
-    /* @Author: TemporalFuzz (@maxzman14)
-     * @Param img (Image): The image to draw the gradient onto
-     * @Param x (Number): x position of the gradient
-     * @Param y (Number): y position of the gradient
-     * @Param w (Number): width of the gradient
-     * @Param h (Number): height of the gradient
-     * @Params c1, c2 (Colors): The top and bottom colors, respectively
-     * @Param quality (Number): Lower = more quality. 2 is typically good
-    */
-    for(var sy = 0;sy <= h;sy += quality) {
-      img.stroke(Kit.pI.lerpColor(c1, c2, sy/w));
-      img.line(x, y + sy, x + w, y + sy);
-    }
-  },
-  horizontalGradient: function(img, x, y, w, h, c1, c2, quality) {
-    /* @Author: TemporalFuzz (@maxzman14)
-     * @Param img (Image): The image to draw the gradient onto
-     * @Param x (Number): x position of the gradient
-     * @Param y (Number): y position of the gradient
-     * @Param w (Number): width of the gradient
-     * @Param h (Number): height of the gradient
-     * @Params c1, c2 (Colors): The top and bottom colors, respectively
-     * @Param quality (Number): Lower = more quality. 2 is typically good
-    */
-    img.strokeWeight(quality);
-    for(var sx = 0;sx <= w;sx += quality) {
-      img.stroke(Kit.pI.lerpColor(c1, c2, sx/w));
-      img.line(x + sx, y, x + sx, y + h);
-    }
-  },
-  init: function(Processing, canvas) {
-    /* @Author: TemporalFuzz (@maxzman14)
-     * @Param Processing (Object): The Processing object (from the Processing.js library), passed as an argument so as not to cause errors.
-     * @Param canvas (Canvas Element): The canvas for the Toolkit to act on.
-     * @Description: Initializes and configures the library
-     * @Revisions: None
-    */
-    Kit.canvas = canvas;
-    Kit.pI = new Processing(Kit.canvas);
   },
 };
