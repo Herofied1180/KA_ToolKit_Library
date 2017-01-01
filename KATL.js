@@ -245,7 +245,7 @@ var Kit = {
      * @Param quality (Number): Lower = more quality. 2 is typically good
     */
     for(var sy = 0;sy <= h;sy += quality) {
-      img.stroke(lerpColor(c1, c2, sy/w));
+      img.stroke(Kit.pI.lerpColor(c1, c2, sy/w));
       img.line(x, y + sy, x + w, y + sy);
     }
   },
@@ -260,7 +260,7 @@ var Kit = {
      * @Param quality (Number): Lower = more quality. 2 is typically good
     */
     for(var sx = 0;sx <= w;sx += quality) {
-      img.stroke(lerpColor(c1, c2, sx/w));
+      img.stroke(Kit.pI.lerpColor(c1, c2, sx/w));
       img.line(x + sx, y, x + sx, y + h);
     }
   },
