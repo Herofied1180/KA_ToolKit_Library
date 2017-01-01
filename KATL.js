@@ -57,7 +57,8 @@ var Kit = {
      * @Param m (Number): The slope of the line
      * @Param v (Vector Array): A point that the line passes through
      * @Returns (Number): The y intercept of the line that passes through v and has slope m
-     * @Revisions: None
+     * @Revisions:
+       * [Bugfix]: Switched order of the parameters
     */
     return v[1] - (m * v[0]);
   },
