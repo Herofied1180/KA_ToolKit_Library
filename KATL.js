@@ -31,7 +31,7 @@ var Kit = {
     */
     Kit.canvas = canvas;
     Kit.pI = new Processing(Kit.canvas);
-    Kit.programID = parseFloat(document.location.href.split(".")[1]);
+    Kit.programID = document.location.href.split(".")[document.location.href.split(".").length - 1];
     Kit.assignKeys();
   },
   assignKeys: function(reset) {
