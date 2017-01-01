@@ -12,6 +12,8 @@
  * 12/31/16: Initial commit; added: choose, M, B, PM, TB, vectAdd, vectSub, vectDiv, vectMult, vectMag, vectNorm, vectRot, vectMid, vectDist, vectHead, vectRefl. (@maxzman14)
  * 12/31/16: Updated vectRefl; now uses variables instead of calling the same functions multiple times. (@maxzman14)
  * 12/31/16: Bugfixes, added colliding.rectRect, colliding.circleCircle, and colliding.circleLine (@maxzman14)
+ * 12/31/16: Pixel art function, bugfixes
+ * 12/31/16: horizontalGradient and verticalGradient functions
 */
 var Kit = {
   canvas: null,
@@ -231,6 +233,36 @@ var Kit = {
     }
     
     return img.get();
+  },
+  verticalGradient: function(img, x, y, w, h, c1, c2, quality) {
+    /* @Author: TemporalFuzz (@maxzman14)
+     * @Param img (Image): The image to draw the gradient onto
+     * @Param x (Number): x position of the gradient
+     * @Param y (Number): y position of the gradient
+     * @Param w (Number): width of the gradient
+     * @Param h (Number): height of the gradient
+     * @Params c1, c2 (Colors): The top and bottom colors, respectively
+     * @Param quality (Number): Lower = more quality. 2 is typically good
+    */
+    for(var sy = 0;sy <= h;sy += quality) {
+      img.stroke(lerpColor(c1, c2, sy/w));
+      img.line(x, y + sy, x + w, y + sy);
+    }
+  },
+  horizontalGradient: function(img, x, y, w, h, c1, c2, quality) {
+    /* @Author: TemporalFuzz (@maxzman14)
+     * @Param img (Image): The image to draw the gradient onto
+     * @Param x (Number): x position of the gradient
+     * @Param y (Number): y position of the gradient
+     * @Param w (Number): width of the gradient
+     * @Param h (Number): height of the gradient
+     * @Params c1, c2 (Colors): The top and bottom colors, respectively
+     * @Param quality (Number): Lower = more quality. 2 is typically good
+    */
+    for(var sx = 0;sx <= w;sx += quality) {
+      img.stroke(lerpColor(c1, c2, sx/w));
+      img.line(x + sx, y, x + sx, y + h);
+    }
   },
   init: function(Processing, canvas) {
     /* @Author: TemporalFuzz (@maxzman14)
