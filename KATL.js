@@ -14,6 +14,7 @@
  * 12/31/16: Bugfixes, added colliding.rectRect, colliding.circleCircle, and colliding.circleLine (@maxzman14)
  * 12/31/16: Pixel art function, bugfixes
  * 12/31/16: horizontalGradient and verticalGradient functions
+ * 1/1/17: Fixed colliding.circleCollideLine, TB, and vectRefl
 */
 var Kit = {
   canvas: null,
