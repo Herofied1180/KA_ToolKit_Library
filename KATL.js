@@ -259,6 +259,7 @@ var Kit = {
      * @Params c1, c2 (Colors): The top and bottom colors, respectively
      * @Param quality (Number): Lower = more quality. 2 is typically good
     */
+    img.strokeWeight(quality);
     for(var sx = 0;sx <= w;sx += quality) {
       img.stroke(Kit.pI.lerpColor(c1, c2, sx/w));
       img.line(x + sx, y, x + sx, y + h);
