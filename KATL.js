@@ -15,6 +15,7 @@
  * 12/31/16: Pixel art function, bugfixes
  * 12/31/16: horizontalGradient and verticalGradient functions
  * 1/1/17: Fixed colliding.circleCollideLine, TB, and vectRefl
+ * 1/1/17: Beginning development of encryption functions
 */
 var Kit = {
   canvas: null,//The canvas to apply commands to
