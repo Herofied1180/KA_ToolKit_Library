@@ -9,13 +9,13 @@
 */
 
 /*Changelog:
- * 12/31/16: Initial release; added: choose, M, B, PM, TB, vectAdd, vectSub, vectDiv, vectMult, vectMag, vectNorm, vectRot, vectMid, vectDist, vectHead, vectRefl. (@maxzman14)
+ * 12/31/16: Initial commit; added: choose, M, B, PM, TB, vectAdd, vectSub, vectDiv, vectMult, vectMag, vectNorm, vectRot, vectMid, vectDist, vectHead, vectRefl. (@maxzman14)
  * 12/31/16: Updated vectRefl; now uses variables instead of calling the same functions multiple times. (@maxzman14)
  * 12/31/16: Bugfixes, added colliding.rectRect, colliding.circleCircle, and colliding.circleLine (@maxzman14)
 */
 var Kit = {
   canvas: null,
-  processingInstance: null,
+  pI: null,
   onKA: (document.location.origin === "https://www.kasandbox.org"),
   choose: function(choices) {
     /* @Author: TemporalFuzz (@maxzman14)
@@ -208,8 +208,8 @@ var Kit = {
      * @Params w, h (Numbers): Width and height of the image respectively. Both default to 120.
      * @Returns (Image): A new image with the pixel art drawn on it
     */
-    var img = Kit.processingInstance.createGraphics(w || 120, h || 120, 1);
-    img.background(200);
+    var img = Kit.pI.createGraphics(w || 120, h || 120, 1);
+    img.background(0, 0, 0);
     
     var longestRow = 0;
     for(var y = 0;y < data.length;y++) {
@@ -237,6 +237,6 @@ var Kit = {
      * @Revisions: None
     */
     Kit.canvas = canvas;
-    Kit.processingInstance = new Processing(Kit.canvas);
+    Kit.pI = new Processing(Kit.canvas);
   },
 };
