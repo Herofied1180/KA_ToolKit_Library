@@ -209,7 +209,7 @@ var Kit = {
      * @Returns (Image): A new image with the pixel art drawn on it
     */
     var img = Kit.pI.createGraphics(w || 120, h || 120, 1);
-    img.background(0, 0, 0);
+    img.background(0, 0, 0, 0);
     
     var longestRow = 0;
     for(var y = 0;y < data.length;y++) {
@@ -220,7 +220,7 @@ var Kit = {
     
     for(var y = 0;y < data.length;y++) {
       for(var x = 0;x < data[y].length;x++) {
-        if(colors[data[y][x]]) {
+        if(colors[data[y][x]] !== undefined) {
           img.fill(colors[data[y][x]]);
           img.rect(x * img.width/longestRow, y * img.height/data.length, img.width/longestRow, img.height/data.length);
         }
