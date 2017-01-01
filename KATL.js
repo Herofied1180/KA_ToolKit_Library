@@ -23,6 +23,7 @@ var Kit = {
   programID: null,
   chars: "abcdefghijlkmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+[]{}|\\'\":;<,>./?".split(""),
   onKA: (document.location.origin === "https://www.kasandbox.org"),
+  localStorage: null,
   init: function(Processing, canvas) {
     /* @Author: TemporalFuzz (@maxzman14)
      * @Param Processing (Object): The Processing object (from the Processing.js library), passed as an argument so as not to cause errors.
@@ -33,34 +34,35 @@ var Kit = {
     Kit.canvas = canvas;
     Kit.pI = new Processing(Kit.canvas);
     Kit.programID = document.location.href.split(".")[document.location.href.split(".").length - 1];
+    Kit.localStorage = localStorage;
     Kit.assignKeys();
   },
   assignKeys: function(reset) {
-    if(!Window.localStorage[Kit.programID]) {
-      Window.localStorage[Kit.programID] = {};
+    if(!Kit.localStorage[Kit.programID]) {
+      Kit.localStorage[Kit.programID] = {};
     }
-    if(!Window.localStorage[Kit.programID].keysAssigned || reset) {
+    if(!Kit.localStorage[Kit.programID].keysAssigned || reset) {
       var alphabet = Object.create(Kit.chars);
       while(alphabet.length > 0) {
         var r = Math.floor(Math.random(alphabet.length));
-        Window.localStorage[Kit.programID][Kit.chars[alphabet.length - 1]] = alphabet[r];
+        Kit.localStorage[Kit.programID][Kit.chars[alphabet.length - 1]] = alphabet[r];
         alphabet.splice(r, 1);
       }
-      Window.localStorage[Kit.programID].keysAssigned = true;
+      Kit.localStorage[Kit.programID].keysAssigned = true;
     }
   },
   encrypt: function(str) {
     var newStr = "";
     for(var i = 0;i < str.length;i++) {
-      newStr += Window.localStorage[Kit.programID][str[i]];
+      newStr += Kit.localStorage[Kit.programID][str[i]];
     }
     return newStr;
   },
   decrypt: function(str) {
     var newStr = "";
     for(var i = 0;i < str.length;i++) {
-      for(var j in Window.localStorage[Kit.programID]) {
-        if(Window.localStorage[Kit.programID][j] === str[i]) {
+      for(var j in Kit.localStorage[Kit.programID]) {
+        if(Kit.localStorage[Kit.programID][j] === str[i]) {
           newStr += j;
         }
       }
