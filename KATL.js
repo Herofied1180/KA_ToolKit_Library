@@ -51,10 +51,10 @@ var Kit = {
     */
     return -1/Kit.M(v1, v2);
   },
-  TB: function(v, m) {
+  TB: function(m, v) {
     /* @Author: TemporalFuzz (@maxzman14)
-     * @Param v (Vector Array): A point that the line passes through
      * @Param m (Number): The slope of the line
+     * @Param v (Vector Array): A point that the line passes through
      * @Returns (Number): The y intercept of the line that passes through v and has slope m
      * @Revisions: None
     */
