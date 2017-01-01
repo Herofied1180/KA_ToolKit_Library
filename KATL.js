@@ -228,7 +228,7 @@ var Kit = {
       }
     }
     
-    return img;
+    return img.get();
   },
   init: function(Processing, canvas) {
     /* @Author: TemporalFuzz (@maxzman14)
