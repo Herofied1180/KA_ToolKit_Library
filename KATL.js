@@ -36,8 +36,10 @@ var Kit = {
     Kit.assignKeys();
   },
   assignKeys: function(reset) {
-    if(!Window.localStorage[Kit.programID].keysAssigned || reset) {
+    if(!Window.localStorage[Kit.programID]) {
       Window.localStorage[Kit.programID] = {};
+    }
+    if(!Window.localStorage[Kit.programID].keysAssigned || reset) {
       var alphabet = Object.create(Kit.chars);
       while(alphabet.length > 0) {
         var r = Math.floor(Math.random(alphabet.length));
