@@ -207,6 +207,8 @@ var Kit = {
      * @Colors (Object): Matches each key with a color
      * @Params w, h (Numbers): Width and height of the image respectively. Both default to 120.
      * @Returns (Image): A new image with the pixel art drawn on it
+     * @Revisions: 
+       * Removed stroke from pixels (12/31/16, @maxzman14)
     */
     var img = Kit.pI.createGraphics(w || 120, h || 120, 1);
     img.background(0, 0, 0, 0);
