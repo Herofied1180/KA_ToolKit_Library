@@ -32,9 +32,11 @@ var Kit = {
     Kit.canvas = canvas;
     Kit.pI = new Processing(Kit.canvas);
     Kit.programID = parseFloat(document.location.href.split(".")[1]);
+    Kit.assignKeys();
   },
   assignKeys: function(reset) {
     if(!Window.localStorage[Kit.programID].keysAssigned || reset) {
+      Window.localStorage[Kit.programID] = {};
       var alphabet = Object.create(Kit.chars);
       while(alphabet.length > 0) {
         var r = Math.floor(Math.random(alphabet.length));
