@@ -17,6 +17,7 @@
  * 1/1/17: Fixed colliding.circleCollideLine, TB, and vectRefl
  * 1/1/17: Beginning development of encryption functions
  * 1/1/17: (Hopefully!) completed encryption functions
+ * 1/1/17: Trying again! :P
 */
 var Kit = {
   canvas: null,//The canvas to apply commands to
