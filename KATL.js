@@ -33,6 +33,7 @@ var Kit = {
      * @Description: Initializes and configures the library
      * @Revisions: None
     */
+    if(typeof ID !== "number") { console.log("INVALID ID"); return; }
     Kit.canvas = canvas;
     Kit.pI = new Processing(Kit.canvas);
     Kit.programID = ID;
@@ -40,10 +41,10 @@ var Kit = {
     Kit.assignKeys();
   },
   assignKeys: function(reset) {
-    if(!Kit.localStorage[Kit.programID]) {
+    if(!Kit.localStorage["keys" + Kit.programID]) {
       Kit.localStorage.setItem("keys" + Kit.programID, "");
     }
-    if(!Kit.localStorage[Kit.programID].keysAssigned || reset) {
+    if(!Kit.localStorage["keysAssigned" +  || reset) {
       var alphabet = Object.create(Kit.chars);
       while(alphabet.length > 0) {
         var r = Math.floor(Math.random(alphabet.length));
