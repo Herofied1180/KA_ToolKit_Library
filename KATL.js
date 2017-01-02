@@ -43,7 +43,7 @@ var Kit = {
     if(!Kit.localStorage["keys" + Kit.programID]) {
       Kit.localStorage.setItem("keys" + Kit.programID, "");
     }
-    if(!Kit.localStorage["keysAssigned" +  || reset) {
+    if(!Kit.localStorage["keysAssigned" Kit.programID] || reset) {
       var alphabet = Object.create(Kit.chars);
       while(alphabet.length > 0) {
         var r = Math.floor(Math.random(alphabet.length));
