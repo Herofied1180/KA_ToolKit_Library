@@ -24,7 +24,7 @@ var Kit = {
   chars: "abcdefghijlkmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+[]{}|\\'\":;<,>./?".split(""),
   onKA: (document.location.origin === "https://www.kasandbox.org"),
   localStorage: null,
-  init: function(Processing, canvas) {
+  init: function(Processing, canvas, ID) {
     /* @Author: TemporalFuzz (@maxzman14)
      * @Param Processing (Object): The Processing object (from the Processing.js library), passed as an argument so as not to cause errors.
      * @Param canvas (Canvas Element): The canvas for the Toolkit to act on.
@@ -33,7 +33,7 @@ var Kit = {
     */
     Kit.canvas = canvas;
     Kit.pI = new Processing(Kit.canvas);
-    Kit.programID = document.location.href.split(".")[document.location.href.split(".").length - 1];
+    Kit.programID = ID;
     Kit.localStorage = localStorage;
     Kit.assignKeys();
   },
