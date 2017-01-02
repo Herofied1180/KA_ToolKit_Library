@@ -40,31 +40,35 @@ var Kit = {
   },
   assignKeys: function(reset) {
     if(!Kit.localStorage[Kit.programID]) {
-      Kit.localStorage[Kit.programID] = {};
+      Kit.localStorage.setItem("keys" + Kit.programID, "");
     }
     if(!Kit.localStorage[Kit.programID].keysAssigned || reset) {
       var alphabet = Object.create(Kit.chars);
       while(alphabet.length > 0) {
         var r = Math.floor(Math.random(alphabet.length));
-        Kit.localStorage[Kit.programID][Kit.chars[alphabet.length - 1]] = alphabet[r];
+        Kit.localStorage["keys" + Kit.programID] += alphabet[r];
         alphabet.splice(r, 1);
       }
-      Kit.localStorage[Kit.programID].keysAssigned = true;
+      Kit.localStorage.setItem("keysAssigned" + Kit.programID, true);
     }
-  },
-  encrypt: function(str) {
-    var newStr = "";
-    for(var i = 0;i < str.length;i++) {
-      newStr += Kit.localStorage[Kit.programID][str[i]];
-    }
-    return newStr;
   },
   decrypt: function(str) {
     var newStr = "";
     for(var i = 0;i < str.length;i++) {
-      for(var j in Kit.localStorage[Kit.programID]) {
-        if(Kit.localStorage[Kit.programID][j] === str[i]) {
-          newStr += j;
+      for(var j in Kit.localStorage.getItem("keys" + Kit.programID)) {
+        if(Kit.localStorage.getItem("keys" + Kit.programID)[j] === str[i]) {
+          newStr += Kit.chars[j];
+        }
+      }
+    }
+    return newStr;
+  },
+  encrypt: function(str) {
+    var newStr = "";
+    for(var i = 0;i < str.length;i++) {
+      for(var j in Kit.chars) {
+        if(Kit.chars[j] === str[i]) {
+          newStr += Kit.storage.get("keys" + Kit.programID)[j];
         }
       }
     }
@@ -341,16 +345,13 @@ var Kit = {
   },
   storage: {
     set: function (item, value) {
-      Window.localStorage.setItem(item, value);
+      Kit.localStorage.setItem(item, value);
     },
     get: function (item) {
-      return Window.localStorage.getItem(item);
+      return Kit.localStorage.getItem(item);
     },
     delete: function(item) {
-      Window.localStorage.removeItem(item);
+      Kit.localStorage.removeItem(item);
     },
-    clear: function() {
-      Window.localStorage.clear();
-    }
   }
 };
