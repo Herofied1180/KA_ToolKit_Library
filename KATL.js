@@ -38,7 +38,6 @@ var Kit = {
     Kit.pI = new Processing(Kit.canvas);
     Kit.programID = ID;
     Kit.localStorage = localStorage;
-    Kit.assignKeys();
   },
   assignKeys: function(reset) {
     if(!Kit.localStorage["keys" + Kit.programID]) {
