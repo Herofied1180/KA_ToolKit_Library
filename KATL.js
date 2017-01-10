@@ -1,5 +1,13 @@
-/* Typedefs:
- * Vector Array: Simply stores a vector as an array, in the format [x, y], which can then be processed by the numerous vector functions in this library.
+/* Typedefs: This library mainly uses arrays over objects for the sake of lessening the effects of KA's inherent lag. Any part of an array that is preceded by an asterisk is not used when the array is created, but is a variable that will be stored and edited when functions are called on that array.
+ * Vector Array [x, y]: Simply stores a vector as an array
+  * x, y (Numbers): The x and y values of the vector, respectively.
+ * Circle [[xPos, yPos], [xVel, yVel], radius, bounciness, *[prevX, prevY]]: Stores all data about a physical circle
+  * [xPos, yPos] (Vector Array): The position of the circle
+  * [xVel, yVel] (Vector Array): The velocity of the circle
+  * radius (Number): The radius of the circle
+  * bounciness: The bounciness of the circle
+  * *[prevX, prevY]: The position of the circle in the previous frame
+ * Line [[x1, y1], [x2, y2]]: 
 */
 
 /* Notes:
