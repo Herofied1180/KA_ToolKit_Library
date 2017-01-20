@@ -48,42 +48,6 @@ var Kit = {
     Kit.programID = ID;
     Kit.localStorage = localStorage;
   },
-  assignKeys: function(reset) {
-    if(!Kit.localStorage["keys" + Kit.programID]) {
-      Kit.localStorage.setItem("keys" + Kit.programID, "");
-    }
-    if(!Kit.localStorage["keysAssigned" + Kit.programID] || reset) {
-      var alphabet = Object.create(Kit.chars);
-      while(alphabet.length > 0) {
-        var r = Math.floor(Math.random(alphabet.length));
-        Kit.localStorage["keys" + Kit.programID] += alphabet[r];
-        alphabet.splice(r, 1);
-      }
-      Kit.localStorage.setItem("keysAssigned" + Kit.programID, true);
-    }
-  },
-  decrypt: function(str) {
-    var newStr = "";
-    for(var i = 0;i < str.length;i++) {
-      for(var j in Kit.localStorage.getItem("keys" + Kit.programID)) {
-        if(Kit.localStorage.getItem("keys" + Kit.programID)[j] === str[i]) {
-          newStr += Kit.chars[j];
-        }
-      }
-    }
-    return newStr;
-  },
-  encrypt: function(str) {
-    var newStr = "";
-    for(var i = 0;i < str.length;i++) {
-      for(var j in Kit.chars) {
-        if(Kit.chars[j] === str[i]) {
-          newStr += Kit.storage.get("keys" + Kit.programID)[j];
-        }
-      }
-    }
-    return newStr;
-  },
   choose: function(choices) {
     /* @Author: TemporalFuzz (@maxzman14)
      * @Param choices (Array): The array of choices
