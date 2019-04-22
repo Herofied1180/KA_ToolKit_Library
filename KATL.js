@@ -27,6 +27,7 @@
  * 1/1/17: (Hopefully!) completed encryption functions
  * 1/1/17: Trying again! :P
  * 1/2/17: Bugfixing
+ * 4/22/19: Re-uploaded to KA and some bugfixing
 */
 var Kit = {
   canvas: null,//The canvas to apply commands to
